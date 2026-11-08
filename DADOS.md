@@ -1,39 +1,30 @@
-# Proveniência dos dados e limitações
+# Proveniência, dados e limitações
 
-## Status da verificação
+## Base histórica: origem não comprovada
 
-**Fonte primária: não identificada nos arquivos versionados.** O repositório não possui CSV, banco de dados, scripts de ETL, notebooks, descrição de licença nem metadados que permitam reproduzir gráficos ou indicadores.
+A versão inicial da página mencionava acidentes de trânsito em Marília (SP) de 2016 a 2024, porém o repositório **não fornece registros históricos, órgão produtor, URL original, licença, data de extração, dicionário de dados nem metodologia reproduzível dessa base**. O conteúdo do dashboard externo não foi auditado. As imagens `mapa1.jpeg` e `mapa2.jpg` não possuem fonte e direitos documentados.
 
-O texto anterior da apresentação mencionava Marília (SP), registros de 2016 a 2024, datas, categorias de veículos, gravidade, latitude/longitude e logradouros. **Essas declarações não podem ser confirmadas com o material disponível.** São referências históricas da página, não uma certificação da existência ou integridade de uma base.
+## Demonstração sintética
 
-## Registro de procedência a completar antes de qualquer análise
+O módulo `painel_risco.demo` produz registros **inteiramente fictícios e determinísticos** usando um gerador pseudoaleatório com seed 42. Os pontos são coordenadas aleatórias próximas à região de Marília e **não correspondem a acidentes conhecidos**, nem modelam padrões reais de trânsito. IDs têm o prefixo `DEMO-`. O programa gera os exemplos em memória ou por comando; nenhum CSV fictício está versionado.
 
-| Campo | Situação atual |
-| --- | --- |
-| Órgão ou responsável pela coleta | Não documentado |
-| URL do portal ou arquivo original | Não documentado |
-| Nome e versão do conjunto de dados | Não documentados |
-| Licença, autorização e restrições de uso | Não documentadas |
-| Período de cobertura | 2016–2024 mencionado no HTML legado; não verificado |
-| Área geográfica e critérios de inclusão | Marília (SP) mencionada; definição não documentada |
-| Data de extração e atualização | Não documentadas |
-| Dicionário de dados e unidades | Não documentados |
-| Transformações, imputações e deduplicação | Código indisponível |
-| Tratamento de dados pessoais e geolocalização | Não documentado |
-| Limitações, subnotificação e vieses | Não avaliados |
-| Critérios para estimar 'risco' | Não implementados nem validados aqui |
+## Esquema para CSV próprio
 
-## Como registrar uma fonte futuramente
+| Campo | Tipo e restrição |
+|---|---|
+| `id` | texto não vazio; duplicados removidos pela primeira ocorrência |
+| `data` | data ISO `AAAA-MM-DD` |
+| `tipo_veiculo` | texto não vazio |
+| `gravidade` | uma de `Sem vítimas`, `Com vítimas`, `Fatal` |
+| `latitude` | número decimal de -90 a 90 |
+| `longitude` | número decimal de -180 a 180 |
 
-Antes de afirmar a origem, guardar: URL exata da página do detentor dos dados, nome oficial da base, data de consulta, período, licença e termos de acesso, versão/hash do arquivo se permitido, dicionário de variáveis e script reprodutível de obtenção. Se houver várias fontes, registrar cada uma com o uso correspondente.
+O pipeline descarta linhas inválidas. Não confere origem, direito de uso, localização no município, anonimização ou coerência substantiva das categorias. O uso de CSV próprio exige avaliação prévia de privacidade e licença.
 
-**Não inclua dados pessoais, endereços identificáveis de vítimas ou credenciais** no repositório. Verifique os direitos sobre imagens, mapas e bases antes de redistribuir qualquer conteúdo.
+## Checklist antes de publicar dados reais
 
-## Interpretação
+Documentar entidade produtora, URL oficial da base, licença de uso, versão e data da extração, período de cobertura, significado dos campos, critérios de inclusão, limpeza/deduplicação, taxas de ausência e verificações espaciais. Não versionar dados pessoais identificáveis. Os direitos das imagens existentes também precisam de verificação.
 
-- Um ponto no mapa pode representar um registro ou uma agregação: sem método e legenda documentados, não é possível determinar qual.
-- Frequência observada não é necessariamente taxa de risco: o volume de tráfego, a exposição, a subnotificação e a qualidade do georreferenciamento importam.
-- Imagens `mapa1.jpeg` e `mapa2.jpg` são mantidas exclusivamente como exemplos visuais; sua fonte e os números representados não foram auditados.
-- O aplicativo externo em `dashboardareaderisco-mariliasp.streamlit.app` não fornece, por si, prova de proveniência ou validação.
+## Interpretação estatística
 
-Este documento evita atribuir fontes ou resultados que não podem ser comprovados.
+Contagem de registros não equivale a risco viário ou probabilidade de acidente. Seriam necessários medidas de exposição ao tráfego, controle de vieses e subnotificação, representatividade, incerteza, delimitação espacial e validação independente antes de afirmar resultados operacionais.
