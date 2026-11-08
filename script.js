@@ -1,13 +1,2 @@
-// Adiciona uma classe no header se o scroll for ativado
-function handleScroll() {
-    const header = document.getElementById('header');
-    if (window.scrollY > 50) {
-        header.classList.add('fixed');
-    } else {
-        header.classList.remove('fixed');
-    }
-}
-
-
-// Percebe o scroll da página
-window.addEventListener('scroll', handleScroll);
+// Apresentação estática: nenhuma chamada a API ou processamento de dados é feito aqui.
+document.documentElement.classList.add("js-enabled");
