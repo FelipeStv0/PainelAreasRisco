@@ -30,7 +30,7 @@
       <div class="container hero-content">
         <span class="eyebrow">Projeto exploratório • Marília, SP</span>
         <h1 id="titulo">Visualização de informações sobre acidentes de trânsito</h1>
-        <p>Uma apresentação do conceito de análise territorial de ocorrências, com foco na comunicação de dados e na segurança viária.</p>
+        <p>Uma demonstração técnica de tratamento de registros e visualização interativa, com dados sintéticos e foco na transparência metodológica.</p>
         <a class="button" href="#projeto">Conheça o projeto</a>
       </div>
     </section>
@@ -38,18 +38,18 @@
       <span class="eyebrow dark">Visão geral</span>
       <h2>Por que estudar a distribuição dos acidentes?</h2>
       <p>O objetivo exploratório é organizar informações sobre ocorrências de trânsito em Marília e ilustrar como visualizações podem apoiar a formulação de perguntas sobre locais, períodos e características dos registros.</p>
-      <div class="notice" role="note"><strong>Escopo deste repositório:</strong> esta é uma página de apresentação estática. O pipeline de tratamento dos dados e o código da aplicação Streamlit não estão disponíveis aqui. As imagens são demonstrações; elas não constituem resultados reproduzíveis ou um mapa validado de risco.</div>
+      <div class="notice" role="note"><strong>Escopo deste repositório:</strong> inclui esta página, um pipeline de validação de CSV e um dashboard Streamlit executável localmente. A demonstração utiliza dados sintéticos; os gráficos e as imagens históricas não representam estimativas de risco validadas.</div>
     </section>
     <section class="section section-muted" id="metodologia">
       <div class="container">
         <span class="eyebrow dark">Abordagem proposta</span>
-        <h2>Etapas de uma análise reproduzível</h2>
+        <h2>Da validação à visualização</h2>
         <div class="cards">
           <article class="card"><span class="card-number">01</span><h3>Origem e qualidade</h3><p>Identificar o órgão responsável, o período, a licença e a cobertura geográfica. Verificar campos ausentes, duplicatas e consistência das coordenadas.</p></article>
           <article class="card"><span class="card-number">02</span><h3>Exploração</h3><p>Estudar tendências temporais e distribuição espacial, distinguindo contagem de ocorrências de taxas ajustadas à exposição ao tráfego.</p></article>
           <article class="card"><span class="card-number">03</span><h3>Visualização</h3><p>Apresentar categorias e mapas com legendas, limitações e contexto. Não interpretar concentração de registros como previsão confiável de acidentes.</p></article>
         </div>
-        <p class="footnote">Estas são etapas metodológicas sugeridas; sua implementação não pode ser verificada a partir dos arquivos deste repositório.</p>
+        <p class="footnote">A validação básica de CSV, geração sintética e visualizações estão implementadas em Python. Fonte oficial, exposição ao tráfego e validação de risco real continuam fora do escopo.</p>
       </div>
     </section>
     <section class="section container" id="visualizacoes">
@@ -62,11 +62,11 @@
     </section>
     <section class="section dashboard-section" id="dashboard">
       <div class="container">
-        <span class="eyebrow">Demonstração externa</span>
+        <span class="eyebrow">Aplicação executável</span>
         <h2>Dashboard Streamlit</h2>
-        <p>O endereço abaixo aponta para uma aplicação externa, hospedada separadamente. Sua disponibilidade, seus dados e seus resultados não são controlados por esta página e não foram verificados nesta atualização.</p>
-        <a class="button" href="https://dashboardareaderisco-mariliasp.streamlit.app/" target="_blank" rel="noopener noreferrer">Abrir aplicação externa</a>
-        <p class="footnote">Caso a aplicação esteja indisponível, a apresentação estática continua acessível. Para executar a aplicação Streamlit localmente, é necessário obter seu código-fonte separadamente.</p>
+        <p>O código completo da demonstração está neste repositório. Execute o aplicativo Streamlit localmente com Python e explore filtros, mapas e gráficos usando registros sintéticos. Não é necessária uma API paga nem a base histórica.</p>
+        <a class="button" href="https://github.com/FelipeStv0/PainelAreasRisco#executar-o-dashboard-windows-powershell" target="_blank" rel="noopener noreferrer">Ver como executar o dashboard</a>
+        <p class="footnote">A versão local não é o mesmo serviço que já foi hospedado externamente. Os dados originais daquele serviço não estão disponíveis neste repositório.</p>
       </div>
     </section>
     <section class="section container" id="fontes">
