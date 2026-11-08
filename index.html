@@ -1,210 +1,81 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados De Areas de Risco.</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Página independente de apresentação de um projeto exploratório sobre acidentes de trânsito em Marília (SP).">
+  <meta name="theme-color" content="#13283b">
+  <title>Painel Áreas de Risco | Projeto exploratório</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header id="header">
-        <a href="https://www.dsin.com.br/">
-            <svg class="logo-topo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154.91 44.13"><defs><style>.cls-1{fill:#fc0;}.cls-2{fill:#fbba00;}.cls-3{fill:#fff;}.cls-4{fill:#e3e3e3;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="25.2 11.08 25.2 11.08 30.25 7.25 31.53 0 6.33 0 12.65 11.08 25.2 11.08"/><polygon class="cls-1" points="31.48 22.07 31.48 22.07 37.15 25.33 44.13 22.07 31.53 0 25.2 11.08 31.48 22.07"/><polygon class="cls-2" points="31.48 22.07 25.2 33.05 25.2 33.05 25.2 39.27 31.53 44.13 44.13 22.07 31.48 22.07"/><polygon class="cls-2" points="25.2 33.05 12.65 33.05 6.33 44.13 31.53 44.13 25.2 33.05"/><polygon class="cls-3" points="6.28 22.07 0 11.08 0 11.08 6.33 0 18.93 22.07 11.92 25.33 6.28 22.07 6.28 22.07"/><polygon class="cls-4" points="0 33.05 6.28 22.07 18.93 22.07 6.33 44.13 0 33.05 0 33.05"/><path class="cls-3" d="M72.16,11A17.88,17.88,0,0,1,74,11.1c3.51.32,5,1.67,5.86,3.08A12,12,0,0,1,81,20v3.58c0,.53,0,1,0,1.56-.19,4-1.29,5.77-3,6.84a9.53,9.53,0,0,1-5.17,1.19H51.55V11ZM58.44,27.82H69.72a8.73,8.73,0,0,0,1.6-.09c2.69-.44,2.82-2.48,2.85-4.74V20.23a3.92,3.92,0,0,0-.94-2.76c-.91-.94-2.29-1-3.7-1.07H58.44Z"/><path class="cls-3" d="M90.56,25.91a3.39,3.39,0,0,0,.15,1.28c.25.72.91,1,2.35,1.13s2.79.13,4.2.16,3,0,4.54-.06a5,5,0,0,0,1.88-.19,1.93,1.93,0,0,0,1.29-1.7,1.66,1.66,0,0,0-.32-1c-.53-.75-1.22-.72-2.78-.94-3.26-.06-6.52-.09-9.75-.28-1-.06-2.07-.16-3.1-.22-.31-.06-.66-.09-1-.16a5.15,5.15,0,0,1-3-1.47,6.26,6.26,0,0,1-1.32-4.36,13.16,13.16,0,0,1,.57-4,4.5,4.5,0,0,1,.91-1.41c1.28-1.38,3-1.6,4.82-1.82,2.41-.1,4.83-.19,7.24-.19,2.66,0,5.33.15,8,.28l1.22.19a6.09,6.09,0,0,1,3.2,1.44c1.53,1.41,1.53,3.39,1.47,5.33l-6.71,0c-.4-1.69-.72-1.91-2.5-2.1s-3.29-.16-4.92-.16c-1.29,0-2.54.07-3.82.1a2.56,2.56,0,0,0-2.17.75,1.84,1.84,0,0,0-.37,1,1.56,1.56,0,0,0,.37,1,2.66,2.66,0,0,0,2.2.84l13.28.47a5.82,5.82,0,0,1,3.29,1c1.13.81,2.13,2.25,2.13,5.48,0,2.51-.44,3.71-1.13,4.68a4.46,4.46,0,0,1-.9.94,8.68,8.68,0,0,1-3.76,1.19c-2.73.16-5.42.28-8.15.28-3,0-5.89-.19-8.87-.34-1.47-.22-3.13-.5-4.23-1.7s-1.22-3.82-1.22-5.48Z"/><path class="cls-3" d="M121.45,11V33.15h-7V11Z"/><path class="cls-3" d="M135.14,11c2.41,3,4.83,5.86,7.18,8.84,2.13,2.7,4.23,5.46,6.33,8.22l-.13-10.16V11h6.39V33.15H144c-2.6-3.17-5.2-6.33-7.74-9.59-1.88-2.42-3.73-4.9-5.55-7.34V33.15H124.3V11Z"/></g></g></svg>
-        </a>
-        <div>
-            <nav class="nav nav-topo">
-                <ul>
-                    <li>
-                        <a href="https://www.dsin.com.br/">Home</a>
-                    </li>
-                    <li>
-                        <a href="https://www.dsin.com.br/o-que-resolvemos/">O que Resolvemos</a>
-                    </li>
-                    <li>
-                        <a href="https://www.dsin.com.br/solucoes/">Soluções</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://carreira.dsin.com.br/">Carreira</a>
-                    </li>
-                    <li>
-                        <a href="https://www.dsin.com.br/area-do-cliente/">Área do Cliente</a>
-                    </li>
-                    <li>
-                        <a href="https://www.dsin.com.br/contato/">Contato</a>
-                    </li>
-                    <!-- Falta o item do nosso projeto aqui.-->
-                </ul>
-                <ul>
-            </nav>
-        </div>
-    </header>
-
-    <!--Banner-->
-    <div id="inicio" class="banner">
-        <img src="acidente de carro.jpeg" alt="acidente de carro"> <!-- Imagem foda -->
-        <div class="overlay"></div>
-        <div class="banner-texto">
-            <h1 class="titulo-banner"> Processamento de dados para identificação de Áreas de Risco de Acidente em Marília.</h1>
-            <p class="desc-banner">Tecnologia a favor da segurança publica.</p>
-            
-        </div>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Painel Áreas de Risco, início">Painel<span>Áreas de Risco</span></a>
+      <nav aria-label="Navegação principal">
+        <a href="#projeto">Projeto</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#visualizacoes">Visualizações</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="https://github.com/FelipeStv0/PainelAreasRisco" target="_blank" rel="noopener noreferrer">Código-fonte</a>
+      </nav>
     </div>
-    
-    <main class="container">
-        <section>
-            <div class="metodos-utilizados">
-                <h1 class="titulo-metodos"> Qual o motivo por trás da criação do painel?</h1>
-        <section class="centerdeta">
-            <div id="detalhes">
-                <p>A fim de priorizar a segurança do Município de Marília, desenvolvemos a ideia de realizar um dashboard de Área de Risco contendo as informações sobre o total de acidentes de Marília.  
-                
-                    <h1>O Que Planejamos Com Essas Informações?</h1>
-
-                    A construção do Dashboard tem como principal objetivo influenciar ações focadas na redução de fatalidades e ferimentos graves relacionados ao trânsito nas ruas de Marília. Sendo um projeto recém-lançado, o plano prioriza a segurança dos usuários mais vulneráveis das estradas por meio de uma série de iniciativas dos mesmos e da prefeitura. <hr> O novo painel que indicia áreas de risco, permite que o usuários acompanhem o progresso que a cidade está fazendo em uma série de iniciativas de seguranças diferentes enquanto trabalhamos para atingir nossas metas da DSIN. Este painel oferece funcionalidade interativa (legendas e gráficos) e é melhor visualizado em um navegador de Desktop ou tablet no modo paisagem.
-                    
-                    <h4>Nós da equipe DSIN: </h4> Trabalhamos intensivamente para atender as demandas dos usuários e manter as ruas mais seguras com o desenvolvimento de novas tecnologias que abrangem as mais diversas áreas de trânsito. Por isso, foi importante realizar a coleta de dados para priorizar a produtividade dos usuários e da equipe governamental de Marília.
-                    
-                    O Painel ainda passa por testes de correção e outros aspectos. Espera-se que no futuro há outros painéis cobrindo todos os municípios em parceria com a DSIN..</p>
-            </div>        
-        <section class="centerdeta">
-            <div id="detalhes">
-                <h1>Processamento de Dados/Estatística:</h1>
-                <p>Primeiramente, foi efetuada a limpeza dos dados, uma vez que, apesar de
-                    serem do segmento, os recursos de informação foram extraídos de um terceiro,
-                    dessa forma, necessitando de tratamento, em seguida, uma análise exploratória dos
-                    dados, em prol do melhor entendimento das tendências, foi executada, por fim, a
-                    formatação para se adequar ao streamlit.app fora realizada.
-                    Como perspectiva de futuro, o projeto visa, via a utilização da biblioteca
-                    scikit-learn, o desenvolvimento de um modelo classificatório probabilístico almejando
-                    a identificação da gravidade de um possível acidente, com isso, criando uma
-                    perspectiva de “perigo” para as ruas da cidade de Marília, SP.</p>
-            </div>
-            <div id="detalhes">
-                <h1>Visualização de Dados:</h1>
-                <p>Para a melhor visualização dos dados extraídos e processados, foi antes
-                    elaborado um estudo de visualização dos dados com a tecnologia da Microsoft
-                    streamlit.app. Foram feitos diversos testes e dashboards com várias tabelas para o
-                    desenvolvimento de um relatório visual contendo as informações mais importantes
-                    que precisam ser emitidas para o usuário (vale ressaltar, que esse dash não será
-                    utilizado na solução final por motivos de falta de responsividade para o usuário).
-                    Para a facilidade de observar quais pontos precisam de mais atenção do leitor, foi
-                    integrado um mapa de calor ao relatório. No final obtivemos o seguinte resultado que
-                    emitem as informações reais:</p>
-                </div>
-        </section>
-
-                <div>                   
-                </section>
-                    <h3 class="desc-metodo">Dados utilizados para a consideração das Áreas de Alto Risco:</h3>
-                    <div class="metodos">
-                        <div class="boxDiv">
-                            <p class="metodo-um">
-                                <strong>Histórico de Acidentes: </strong> Áreas com um número elevado de acidentes no passado. Os dados históricos são analisados para identificar padrões, como a frequência e a gravidade dos acidentes.
-                            </p>
-                        </div>
-                        <div class="boxDiv boxDivSecond">
-                            <p class="metodo-um">
-                                <strong>Infraestrutura Deficiente:</strong> Locais onde a infraestrutura viária é inadequada ou perigosa, como cruzamentos mal sinalizados, curvas acentuadas, falta de faixas de pedestres, ou ausência de sinalização clara.
-                            </p>
-                        </div>
-                        <div class="boxDiv">
-                            <p class="metodo-um">
-                                <strong>Áreas com muito trânsito de veículos:</strong> Áreas com grande volume de tráfego, como centros urbanos, onde há um alto fluxo de veículos, aumentando o risco de colisões.
-                            </p>
-                        </div>
-                    </div>
-
-                </div> 
-            </div>
-        </section>
-
-
-    </main>
-    
-    <!-- Segunda seção - Mapa 2 -->
-    <section class="centerMap">
-        <div id="mapa1">
-            <h1>Grafico em Pizza:</h1>
-            <p>Tipo de Veiculos:</p>
-            <img src="mapa2.jpg" alt=""> <!-- mapa_2 -->
-        </div>
+  </header>
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="titulo">
+      <img src="acidente de carro.jpeg" alt="" class="hero-image">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <span class="eyebrow">Projeto exploratório • Marília, SP</span>
+        <h1 id="titulo">Visualização de informações sobre acidentes de trânsito</h1>
+        <p>Uma apresentação do conceito de análise territorial de ocorrências, com foco na comunicação de dados e na segurança viária.</p>
+        <a class="button" href="#projeto">Conheça o projeto</a>
+      </div>
     </section>
-
-    <!-- Terceira seção - Mapa 1 -->
-    <section class="centerMap">
-        <div id="mapa2">
-            <h1>Exemplo de uma Area com Acidentes Fatais:</h1>
-            <p>Imagem de uma Regiao de Marilia.</p>
-            <img src= "mapa1.jpeg" alt=""> <!-- mapa_1 -->
-
-        </div>
+    <section class="section container" id="projeto">
+      <span class="eyebrow dark">Visão geral</span>
+      <h2>Por que estudar a distribuição dos acidentes?</h2>
+      <p>O objetivo exploratório é organizar informações sobre ocorrências de trânsito em Marília e ilustrar como visualizações podem apoiar a formulação de perguntas sobre locais, períodos e características dos registros.</p>
+      <div class="notice" role="note"><strong>Escopo deste repositório:</strong> esta é uma página de apresentação estática. O pipeline de tratamento dos dados e o código da aplicação Streamlit não estão disponíveis aqui. As imagens são demonstrações; elas não constituem resultados reproduzíveis ou um mapa validado de risco.</div>
     </section>
-
-    <!-- Power B.I -->
-    <section class="powerBiContainer">
-        <div>
-            <h1>Informações Recolhidas para a construção do Dashboard: </h1>
-                <h2>De todos os acidentes:</h2>
-                    <div>
-                        <h3>Veículos/ ou Inocentes:</h3>
-                        <ul>
-                            <li>Motocicletas;</li>
-                            <li>Automóvel;</li>            
-                            <li>Ônibus;</li>                     
-                            <li>Bicicleta;</li>
-                            <li>Caminhão;</li>
-                            <li>Pedestres;</li>
-                            <br>
-                            <li>Anos (2016 à 2024);</li>
-                            <li>Meses do ano;</li>
-                            <li>Tipos de acidentes;</li>
-                            <li>Latitude e Longitude;</li>
-                            <li>Logradouro/Endereço.</li>
-                        </ul>
-                    (Todos eles sendo em fatais ou não).
-                    <hr>
-                    </div>
-                </section>
-                <iframe width="100%" height="750" src="https://dashboardareaderisco-mariliasp.streamlit.app/?embedded=true" frameborder="0"></iframe>
+    <section class="section section-muted" id="metodologia">
+      <div class="container">
+        <span class="eyebrow dark">Abordagem proposta</span>
+        <h2>Etapas de uma análise reproduzível</h2>
+        <div class="cards">
+          <article class="card"><span class="card-number">01</span><h3>Origem e qualidade</h3><p>Identificar o órgão responsável, o período, a licença e a cobertura geográfica. Verificar campos ausentes, duplicatas e consistência das coordenadas.</p></article>
+          <article class="card"><span class="card-number">02</span><h3>Exploração</h3><p>Estudar tendências temporais e distribuição espacial, distinguindo contagem de ocorrências de taxas ajustadas à exposição ao tráfego.</p></article>
+          <article class="card"><span class="card-number">03</span><h3>Visualização</h3><p>Apresentar categorias e mapas com legendas, limitações e contexto. Não interpretar concentração de registros como previsão confiável de acidentes.</p></article>
         </div>
+        <p class="footnote">Estas são etapas metodológicas sugeridas; sua implementação não pode ser verificada a partir dos arquivos deste repositório.</p>
+      </div>
     </section>
-
-    <footer>
-        <!-- Footer -->
-        <div class="container">
-        <nav class="menuFooter">
-            <ul><li id="menu-item-919" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item menu-item-919"><a href="https://www.dsin.com.br/" aria-current="page">Home</a></li>
-    <li id="menu-item-920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-920"><a href="https://www.dsin.com.br/o-que-resolvemos/">O que Resolvemos</a>
-    <ul class="sub-menu">
-        <li id="menu-item-939" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-939"><a href="/o-que-resolvemos/#especialistas">Nossos Números</a></li>
-        <li id="menu-item-940" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-940"><a href="/o-que-resolvemos/#regioes">Regiões</a></li>
-        <li id="menu-item-941" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-941"><a href="http://carreira.dsin.com.br/">Envie seu Currículo</a></li>
-        <li id="menu-item-942" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-942"><a href="https://www.dsin.com.br/solucoes/">Soluções</a></li>
-    </ul>
-    </li>
-    <li id="menu-item-921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-921"><a href="https://www.dsin.com.br/solucoes/">Soluções</a>
-    <ul class="sub-menu">
-        <li id="menu-item-930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-930"><a href="https://www.dsin.com.br/solucoes/talonario-eletronico/">Talonário Eletrônico</a></li>
-        <li id="menu-item-931" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-931"><a href="https://www.dsin.com.br/solucoes/sgit-software-de-gerenciamento-e-processamento-de-multas-de-transito/">Processamento e Gerenciamento de Multas de Trânsito</a></li>
-        <li id="menu-item-932" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-932"><a href="https://www.dsin.com.br/solucoes/area-azul-eletronica/">Área Azul Eletrônica</a></li>
-        <li id="menu-item-925" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-925"><a href="https://www.dsin.com.br/solucoes/dsin-dashboard/">Dashboard</a></li>
-        <li id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a href="https://www.dsin.com.br/solucoes/sgiprv-software-de-gestao-integrada-para-patio-de-recolhimento-de-veiculos/">Gestão Integrada para Pátio e Recolhimento de Veículos</a></li>
-        <li id="menu-item-935" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-935"><a href="https://www.dsin.com.br/solucoes/sgt-sistema-de-gestao-de-transporte/">Gestão de Transporte</a></li>
-        <li id="menu-item-936" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-936"><a href="https://www.dsin.com.br/solucoes/sgbo-software-de-gestao-de-boletim-de-ocorrencia/">Gestão de Boletim de Ocorrência</a></li>
-        <li id="menu-item-937" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-937"><a href="https://www.dsin.com.br/solucoes/sgiv-software-para-gestao-de-infraestrutura-viaria/">Gestão de Infraestrutura</a></li>
-        <li id="menu-item-938" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-938"><a href="https://www.dsin.com.br/solucoes/sgcep-software-para-gestao-de-credenciais-para-estacionamento-publico/">Controle de Vagas Especiais</a></li>
-        <li id="menu-item-1204" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1204"><a href="https://www.dsin.com.br/solucoes/videomonitoramento/">Videomonitoramento</a></li>
-    </ul>
-    </li>
-    <li id="menu-item-922" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-922"><a target="_blank" rel="noopener" href="http://carreira.dsin.com.br/">Carreira</a></li>
-    <li id="menu-item-961" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-961"><a href="https://www.dsin.com.br/area-do-cliente/">Área do Cliente</a></li>
-    <li id="menu-item-923" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-923"><a href="https://www.dsin.com.br/contato/">Contato</a></li>
-    </ul>    </nav>
-    
-        </div>
-    </footer>
+    <section class="section container" id="visualizacoes">
+      <span class="eyebrow dark">Material ilustrativo</span>
+      <h2>Exemplos de visualizações</h2>
+      <div class="gallery">
+        <figure><img src="mapa2.jpg" alt="Imagem de exemplo de gráfico sobre tipos de veículos" loading="lazy"><figcaption>Exemplo de distribuição por tipo de veículo. Fonte e valores originais não documentados.</figcaption></figure>
+        <figure><img src="mapa1.jpeg" alt="Imagem ilustrativa de mapa de ocorrências na região de Marília" loading="lazy"><figcaption>Exemplo de visualização geográfica. Critérios e dados de origem não disponíveis neste repositório.</figcaption></figure>
+      </div>
+    </section>
+    <section class="section dashboard-section" id="dashboard">
+      <div class="container">
+        <span class="eyebrow">Demonstração externa</span>
+        <h2>Dashboard Streamlit</h2>
+        <p>O endereço abaixo aponta para uma aplicação externa, hospedada separadamente. Sua disponibilidade, seus dados e seus resultados não são controlados por esta página e não foram verificados nesta atualização.</p>
+        <a class="button" href="https://dashboardareaderisco-mariliasp.streamlit.app/" target="_blank" rel="noopener noreferrer">Abrir aplicação externa</a>
+        <p class="footnote">Caso a aplicação esteja indisponível, a apresentação estática continua acessível. Para executar a aplicação Streamlit localmente, é necessário obter seu código-fonte separadamente.</p>
+      </div>
+    </section>
+    <section class="section container" id="fontes">
+      <span class="eyebrow dark">Transparência</span>
+      <h2>Fontes e limitações</h2>
+      <p>O HTML original menciona registros entre 2016 e 2024, mas não identifica a fonte primária. A procedência, a data de atualização, a licença e a metodologia dos dados permanecem <strong>não verificadas</strong>. Consulte o <a href="DADOS.md">registro de proveniência</a> antes de reutilizar gráficos ou tirar conclusões.</p>
+      <p>Este é um projeto independente de apresentação; não representa comunicação oficial de prefeitura, órgão público ou empresa. Qualquer referência institucional ou marca de terceiros depende de autorização e contexto verificáveis.</p>
+    </section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><p>Painel Áreas de Risco • Apresentação independente e exploratória</p><a href="https://github.com/FelipeStv0/PainelAreasRisco" target="_blank" rel="noopener noreferrer">Repositório GitHub</a></div></footer>
 </body>
 </html>
-<!--lawisS2r-->
