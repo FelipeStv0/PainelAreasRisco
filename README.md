@@ -4,6 +4,14 @@ Projeto independente de visualização de registros de acidentes de trânsito. C
 
 > **Aviso:** a base original relacionada a Marília (SP), mencionada na apresentação histórica como 2016–2024, não está disponível e sua origem não foi documentada. O dashboard inicia com **dados inteiramente sintéticos** e **não representa acidentes reais**. Não há vínculo institucional comprovado com DSIN ou Prefeitura de Marília. Não use os mapas e contagens como estimativas de risco ou para decisões sobre segurança viária.
 
+## Demonstração rápida para portfólio
+
+A demonstração está pronta para ser iniciada **sem chaves de API ou dados reais**. Execute os comandos da próxima seção e abra o endereço local exibido pelo Streamlit (normalmente http://localhost:8501).
+
+Para apresentar o projeto, mantenha a fonte **Demo sintética** selecionada e mostre os filtros por veículo e gravidade, os gráficos, o mapa e a exportação CSV. Explique que o processamento está em `src/painel_risco/pipeline.py` e que **nenhuma contagem representa risco real**. Não apresente o dashboard externo histórico como resultado deste código.
+
+**Validação:** o teste `tests/test_app.py` verifica a inicialização do Streamlit com 160 registros fictícios. Esse teste não substitui uma inspeção visual no navegador.
+
 ## Executar o dashboard (Windows PowerShell)
 
 Requisitos: Python 3.10+ e Git. Em uma pasta de sua escolha:
@@ -62,7 +70,7 @@ python -m pytest -q
 python -m py_compile app.py src/painel_risco/*.py
 ```
 
-O workflow em `.github/workflows/ci.yml` roda testes e compilação no GitHub Actions em Python 3.10 e 3.12. Os testes verificam geração determinística, contrato de colunas, descarte de dados inválidos, deduplicação, leitura e contagens. Não incluem testes E2E nem validam o dashboard histórico ou dados reais.
+O workflow em `.github/workflows/ci.yml` roda testes e compilação no GitHub Actions em Python 3.10 e 3.12. Os testes verificam geração determinística, contrato de colunas, descarte de dados inválidos, deduplicação, leitura, contagens e inicialização básica do Streamlit. Não incluem testes de navegador completos nem validam o dashboard histórico ou dados reais.
 
 ## Organização
 
@@ -71,6 +79,7 @@ app.py                         # Streamlit: filtros, contagens, mapa e exportaç
 src/painel_risco/pipeline.py   # Validação, limpeza e resumo
 src/painel_risco/demo.py       # Dados sintéticos determinísticos
 tests/test_pipeline.py        # Testes unitários
+tests/test_app.py             # Teste de inicialização do Streamlit
 .github/workflows/ci.yml      # Integração contínua
 pyproject.toml                 # Dependências Python
 index.html, styles.css, script.js  # Apresentação estática
