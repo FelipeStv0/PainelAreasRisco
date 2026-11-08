@@ -47,7 +47,7 @@ PainelAreasRisco/
 └── README.md
 ```
 
-Há ainda arquivos de marca DSIN legados no histórico/repositório; **não são utilizados** pela apresentação atual. Não devem ser reutilizados sem comprovação de direitos e autorização.
+Os arquivos de marca DSIN foram removidos da versão atual por falta de comprovação de autorização; podem permanecer acessíveis no histórico Git. Não os reutilize sem permissão.
 
 ## Dados e metodologia
 
@@ -68,7 +68,7 @@ Não há testes automatizados de processamento de dados ou de Streamlit neste re
 
 ## Identidade e autoria institucional
 
-Esta versão **não declara vínculo, patrocínio, parceria ou endosso da DSIN, da Prefeitura de Marília ou de qualquer instituição**. Logotipo, menus corporativos e alegações de atuação em nome da DSIN foram retirados da página. Arquivos de marca remanescentes não constituem autorização de uso; sua remoção do repositório e do histórico deve ser avaliada por quem detém os direitos.
+Esta versão **não declara vínculo, patrocínio, parceria ou endosso da DSIN, da Prefeitura de Marília ou de qualquer instituição**. Logotipo, menus corporativos e alegações de atuação em nome da DSIN foram retirados da página. A remoção completa de marcas do histórico Git, caso necessária, exige avaliação e procedimento específicos.
 
 Caso exista autorização institucional documentada, ela pode ser contextualizada em alteração posterior, indicando natureza da colaboração, responsável e permissão de uso da marca.
 
