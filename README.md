@@ -1,82 +1,82 @@
-# Painel Áreas de Risco — Marília (SP)
+# Painel Áreas de Risco — demonstração exploratória
 
-Página **estática e independente** de apresentação de um projeto exploratório sobre visualização de acidentes de trânsito na cidade de Marília, São Paulo.
+Projeto independente de visualização de registros de acidentes de trânsito. Contém página estática em HTML/CSS/JS, dashboard Streamlit, pipeline de validação de CSV e testes automatizados.
 
-> **Limite essencial:** este repositório contém apenas o front-end de apresentação (`index.html`, `styles.css`, `script.js` e imagens). **Não contém** o pipeline de coleta/limpeza dos dados, os registros de acidentes, os notebooks de análise nem o código-fonte da aplicação Streamlit. Os resultados e gráficos ilustrados **não foram reproduzidos ou validados** a partir dos arquivos disponíveis.
+> **Aviso:** a base original relacionada a Marília (SP), mencionada na apresentação histórica como 2016–2024, não está disponível e sua origem não foi documentada. O dashboard inicia com **dados inteiramente sintéticos** e **não representa acidentes reais**. Não há vínculo institucional comprovado com DSIN ou Prefeitura de Marília. Não use os mapas e contagens como estimativas de risco ou para decisões sobre segurança viária.
 
-## O que você encontra aqui
+## Executar o dashboard (Windows PowerShell)
 
-- Página responsiva em HTML, CSS e JavaScript, sem dependências de instalação.
-- Contexto e propostas de visualização de acidentes.
-- Imagens ilustrativas de gráfico e mapa (dados e métodos de criação não documentados).
-- Link para um [dashboard Streamlit hospedado externamente](https://dashboardareaderisco-mariliasp.streamlit.app/), cuja disponibilidade e conteúdo são independentes desta página.
-- [Registro de origem e limitações dos dados](DADOS.md).
+Requisitos: Python 3.10+ e Git. Em uma pasta de sua escolha:
 
-## Executar localmente
-
-**Opção 1 — sem instalação:** clone ou baixe o repositório e abra `index.html` em um navegador moderno. O front-end não precisa de Node.js, Python nem banco de dados.
-
-```bash
+```powershell
 git clone https://github.com/FelipeStv0/PainelAreasRisco.git
 cd PainelAreasRisco
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+python -m streamlit run app.py
 ```
 
-**Opção 2 — servidor HTTP local (recomendado para simular hospedagem):** com Python 3 instalado, execute na pasta do projeto:
+Se a ativação do PowerShell estiver bloqueada, execute sem ativar:
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e .
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
 
-```bash
+Em Linux/macOS: crie o ambiente com `python3 -m venv .venv`, ative com `source .venv/bin/activate` e execute os dois últimos comandos. O terminal informa o endereço do Streamlit, normalmente **http://localhost:8501**. Não é necessário API, banco de dados ou token para a demonstração.
+
+## Dados sintéticos e CSV próprio
+
+Por padrão, o app gera 160 registros fictícios de forma determinística, com `seed=42`. Se quiser gerar um arquivo físico:
+
+```powershell
+python -m painel_risco.demo --output data/demo_sintetico.csv --rows 160 --seed 42
+```
+
+No menu lateral do Streamlit, escolha **CSV próprio** para carregar dados **UTF-8** com seis campos obrigatórios:
+
+```csv
+id,data,tipo_veiculo,gravidade,latitude,longitude
+EXEMPLO-001,2024-01-01,Automóvel,Sem vítimas,-22.217,-49.950
+```
+
+Essa linha é **ilustrativa**, não uma ocorrência real. Data no formato `AAAA-MM-DD`; gravidade deve ser exatamente `Sem vítimas`, `Com vítimas` ou `Fatal`. Coordenadas em graus decimais (latitude de -90 a 90; longitude de -180 a 180). IDs devem ser únicos.
+
+O pipeline elimina registros com campos ausentes, datas/coordenadas inválidas, gravidade fora do conjunto e IDs duplicados (preserva a primeira ocorrência). **Não** verifica município, licenciamento dos dados, identidade de vítimas, conformidade com LGPD ou proveniência. Não envie dados pessoais ou sensíveis, especialmente para implantações públicas.
+
+## Página de apresentação
+
+Para abrir o front-end estático, abra `index.html` no navegador ou execute:
+
+```powershell
 python -m http.server 8000
 ```
 
-Abra **http://localhost:8000/**. Finalize com `Ctrl+C`.
+Acesse **http://localhost:8000**. A página estática conserva um link para a aplicação histórica hospedada externamente; ela é **independente** do novo `app.py`, e seu estado não foi verificado.
 
-No Windows, caso `python` não esteja disponível, tente `py -m http.server 8000`.
+## Testes e CI
 
-**O que não é possível executar a partir deste repositório:** o app Streamlit e o processamento dos dados. Para isso seriam necessários, no mínimo, o código Python original, dados acessíveis legalmente, dependências, versões e instruções específicas. Não há um `requirements.txt` legítimo para essa parte neste projeto.
-
-## Estrutura
-
-```text
-PainelAreasRisco/
-├── index.html                # Página de apresentação
-├── styles.css                # Layout responsivo
-├── script.js                 # Inicialização mínima do front-end
-├── acidente de carro.jpeg    # Imagem de banner
-├── mapa1.jpeg                # Exemplo de mapa (origem não documentada)
-├── mapa2.jpg                 # Exemplo de gráfico (origem não documentada)
-├── DADOS.md                  # Proveniência e lacunas
-└── README.md
+```powershell
+python -m pip install -e '.[dev]'
+python -m pytest -q
+python -m py_compile app.py src/painel_risco/*.py
 ```
 
-Os arquivos de marca DSIN foram removidos da versão atual por falta de comprovação de autorização; podem permanecer acessíveis no histórico Git. Não os reutilize sem permissão.
+O workflow em `.github/workflows/ci.yml` roda testes e compilação no GitHub Actions em Python 3.10 e 3.12. Os testes verificam geração determinística, contrato de colunas, descarte de dados inválidos, deduplicação, leitura e contagens. Não incluem testes E2E nem validam o dashboard histórico ou dados reais.
 
-## Dados e metodologia
+## Organização
 
-O HTML anterior mencionava registros de acidentes entre **2016 e 2024**, incluindo tipo de veículo, data, coordenadas e endereço. Entretanto, **não há base de dados nem referência primária documentada** que permita confirmar os campos, o intervalo ou a cobertura. Para preencher a fonte corretamente, consulte [DADOS.md](DADOS.md), que lista as informações pendentes, sem atribuir os dados a um órgão por suposição.
+```text
+app.py                         # Streamlit: filtros, contagens, mapa e exportação
+src/painel_risco/pipeline.py   # Validação, limpeza e resumo
+src/painel_risco/demo.py       # Dados sintéticos determinísticos
+tests/test_pipeline.py        # Testes unitários
+.github/workflows/ci.yml      # Integração contínua
+pyproject.toml                 # Dependências Python
+index.html, styles.css, script.js  # Apresentação estática
+DADOS.md                      # Fontes, contrato e limitações
+```
 
-As etapas de higienização, exploração e visualização descritas na página são uma **proposta metodológica**, não uma implementação auditável deste repositório.
+## Limitações e próximas etapas
 
-Contagem de acidentes não equivale automaticamente a probabilidade de acidente ou nível de risco. Sem denominadores de exposição, controle de vieses e validação, **não utilize este material para precificação, decisões operacionais, políticas públicas ou avaliação de segurança de vias**.
-
-## Verificação manual
-
-1. Abra a página localmente e navegue pelas seções do menu.
-2. Inspecione em telas de celular e desktop; confira que os links e as imagens estão acessíveis.
-3. Verifique se o botão do dashboard abre o site externo em nova aba. A página local deve continuar utilizável caso o serviço não esteja no ar.
-4. Confira a presença do aviso de escopo e de fonte não verificada.
-
-Não há testes automatizados de processamento de dados ou de Streamlit neste repositório. A disponibilidade do endereço externo não foi verificada nesta revisão.
-
-## Identidade e autoria institucional
-
-Esta versão **não declara vínculo, patrocínio, parceria ou endosso da DSIN, da Prefeitura de Marília ou de qualquer instituição**. Logotipo, menus corporativos e alegações de atuação em nome da DSIN foram retirados da página. A remoção completa de marcas do histórico Git, caso necessária, exige avaliação e procedimento específicos.
-
-Caso exista autorização institucional documentada, ela pode ser contextualizada em alteração posterior, indicando natureza da colaboração, responsável e permissão de uso da marca.
-
-## Próximas etapas para uma análise reproduzível
-
-- Obter e documentar fontes primárias, licenças e período de coleta.
-- Publicar pipeline de ingestão e tratamento com testes e dados anonimizados, quando legalmente permitido.
-- Versionar a aplicação Streamlit separadamente ou integrá-la aqui com dependências fixadas.
-- Documentar critérios geoespaciais, vieses de cobertura, validação e limitações de uso.
-
-**Status:** apresentação estática disponível; análise de acidentes e dashboard externo não reproduzíveis a partir deste repositório.
+O dashboard mostra **contagens**, não risco de acidentes. Não há denominadores de exposição ao tráfego, auditoria de subnotificação, validação geoespacial, modelo de ML ou previsão. As imagens `mapa1.jpeg` e `mapa2.jpg` são legadas e a origem/direitos não foram comprovados. Antes de integrar dados reais, identificar fonte primária, licença, período, dicionário de dados, transformações e privacidade. Consulte [DADOS.md](DADOS.md).

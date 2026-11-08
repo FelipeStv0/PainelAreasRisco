@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "painel-areas-risco"
+version = "0.2.0"
+description = "Dashboard exploratório com dados sintéticos ou CSV fornecido pelo usuário"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0,<3", "streamlit>=1.32,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.6,<1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
