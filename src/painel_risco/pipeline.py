@@ -19,6 +19,11 @@ def load_csv(path: str | Path) -> pd.DataFrame:
         raise DataValidationError(f"CSV inválido: {exc}") from exc
 
 def clean_records(frame: pd.DataFrame) -> pd.DataFrame:
+    """Normaliza o esquema; linhas excluídas não são estimativas de risco.
+
+    INTEGRAÇÃO FUTURA: ao aceitar novos CSVs, acrescente validações aqui e
+    testes de entradas inválidas, sem relaxar as checagens silenciosamente.
+    """
     missing = sorted(set(REQUIRED) - set(frame.columns))
     if missing:
         raise DataValidationError("Colunas obrigatórias ausentes: " + ", ".join(missing))
@@ -35,6 +40,7 @@ def clean_records(frame: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values(["data", "id"]).reset_index(drop=True)
 
 def summarize(frame: pd.DataFrame) -> dict[str, object]:
+    """Produz contagens exploratórias. Não são taxas de risco causal."""
     return {
         "total": int(len(frame)),
         "por_gravidade": frame["gravidade"].value_counts().sort_index(),
