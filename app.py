@@ -2,8 +2,8 @@
 from __future__ import annotations
 import pandas as pd
 import streamlit as st
-from painel_risco.demo import generate_demo
-from painel_risco.pipeline import DataValidationError, clean_records, summarize
+from painel_risco.pipeline import DataValidationError, summarize
+from painel_risco.service import prepare_dataset, filter_records
 
 st.set_page_config(page_title="Painel Áreas de Risco | Demonstração", page_icon="📊", layout="wide")
 st.title("Acidentes de trânsito — demonstração exploratória")
@@ -18,8 +18,8 @@ if source == "CSV próprio" and file is None:
     st.info("Selecione um CSV. O formato está descrito no README.")
     st.stop()
 try:
-    raw = generate_demo() if source == "Demo sintética" else pd.read_csv(file, dtype={"id": "string"}, encoding="utf-8")
-    data = clean_records(raw)
+    # Integração: leitura e validação ficam no service; a interface só renderiza.
+    raw, data = prepare_dataset(source, file)
 except (DataValidationError, pd.errors.ParserError, pd.errors.EmptyDataError, UnicodeError, ValueError) as exc:
     st.error(f"Entrada inválida: {exc}")
     st.stop()
@@ -29,7 +29,8 @@ if data.empty:
 st.sidebar.header("Filtros")
 severities = st.sidebar.multiselect("Gravidade", sorted(data["gravidade"].unique()), default=sorted(data["gravidade"].unique()))
 vehicles = st.sidebar.multiselect("Veículo", sorted(data["tipo_veiculo"].unique()), default=sorted(data["tipo_veiculo"].unique()))
-filtered = data[data["gravidade"].isin(severities) & data["tipo_veiculo"].isin(vehicles)]
+# Integração: qualquer nova regra de filtro deve ter teste no service.
+filtered = filter_records(data, severities, vehicles)
 st.metric("Registros exibidos (contagem, não taxa de risco)", len(filtered))
 st.caption(f"Fonte: {'sintética (seed=42)' if source == 'Demo sintética' else 'CSV fornecido; origem não verificada'}. {len(raw)-len(data)} linhas descartadas.")
 if filtered.empty:

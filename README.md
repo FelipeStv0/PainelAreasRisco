@@ -89,3 +89,11 @@ DADOS.md                      # Fontes, contrato e limitações
 ## Limitações e próximas etapas
 
 O dashboard mostra **contagens**, não risco de acidentes. Não há denominadores de exposição ao tráfego, auditoria de subnotificação, validação geoespacial, modelo de ML ou previsão. As imagens `mapa1.jpeg` e `mapa2.jpg` são legadas e a origem/direitos não foram comprovados. Antes de integrar dados reais, identificar fonte primária, licença, período, dicionário de dados, transformações e privacidade. Consulte [DADOS.md](DADOS.md).
+
+
+## Manutenção e integração
+
+O código separa interface (`app.py`), serviço de origem/filtros
+(`src/painel_risco/service.py`) e validação de dados (`pipeline.py`).
+Consulte [docs/GUIA_MANUTENCAO.md](docs/GUIA_MANUTENCAO.md) antes de
+adicionar origens, campos ou gráficos.
