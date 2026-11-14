@@ -1,3 +1,5 @@
+import warnings
+
 import pandas as pd
 import pytest
 from painel_risco.demo import generate_demo
@@ -8,6 +10,16 @@ def test_demo_is_deterministic_and_clean():
     pd.testing.assert_frame_equal(a, generate_demo(10, seed=10))
     assert len(clean_records(a)) == 10
     assert set(a["id"].str.startswith("DEMO-")) == {True}
+
+
+def test_demo_does_not_emit_deprecation_warnings():
+    """Garante que a geração de datas não reintroduza APIs depreciadas."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", DeprecationWarning)
+        demo = generate_demo(160, seed=42)
+    assert len(demo) == 160
+    assert all(value.startswith("2024-") for value in demo["data"])
+    assert demo["id"].iloc[0] == "DEMO-00001"
 
 def test_reject_missing_columns():
     with pytest.raises(DataValidationError, match="Colunas obrigatórias"):

@@ -1,6 +1,7 @@
 """Dados totalmente sintéticos, determinísticos e não representativos."""
 from __future__ import annotations
 import argparse
+from datetime import date, timedelta
 from pathlib import Path
 import random
 import pandas as pd
@@ -9,13 +10,14 @@ def generate_demo(n: int = 160, seed: int = 42) -> pd.DataFrame:
     if n < 1:
         raise ValueError("n deve ser positivo")
     rng = random.Random(seed)
-    base = pd.Timestamp("2024-01-01")
+    base = date(2024, 1, 1)
     rows = []
     for i in range(n):
-        date = base + pd.Timedelta(days=rng.randint(0, 364))
+        # Datas sintéticas usam apenas datetime; evita deprecações de NumPy/pandas.
+        day = base + timedelta(days=rng.randint(0, 364))
         rows.append({
             "id": f"DEMO-{i + 1:05d}",
-            "data": date.strftime("%Y-%m-%d"),
+            "data": day.isoformat(),
             "tipo_veiculo": rng.choice(["Automóvel", "Motocicleta", "Bicicleta", "Ônibus"]),
             "gravidade": rng.choices(["Sem vítimas", "Com vítimas", "Fatal"], weights=[75, 23, 2])[0],
             "latitude": round(-22.217 + rng.uniform(-0.025, 0.025), 6),
