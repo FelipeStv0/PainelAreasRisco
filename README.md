@@ -1,5 +1,8 @@
 # Painel Áreas de Risco — demonstração exploratória
 
+**Idiomas:** [Português](README.md) | [English](README_EN.md)
+
+
 Projeto independente de visualização de registros de acidentes de trânsito. Contém página estática em HTML/CSS/JS, dashboard Streamlit, pipeline de validação de CSV e testes automatizados.
 
 > **Aviso:** a base original relacionada a Marília (SP), mencionada na apresentação histórica como 2016–2024, não está disponível e sua origem não foi documentada. O dashboard inicia com **dados inteiramente sintéticos** e **não representa acidentes reais**. Não há vínculo institucional comprovado com DSIN ou Prefeitura de Marília. Não use os mapas e contagens como estimativas de risco ou para decisões sobre segurança viária.
